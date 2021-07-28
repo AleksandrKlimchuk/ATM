@@ -5,12 +5,12 @@ public class Transaction {
     /**
      * The amount of this transaction.
      * */
-    private double amount;
+    private final double amount;
 
     /**
      * The time and date of this transaction.
      */
-    private Date timestamp;
+    private final Date timestamp;
 
     /**
      * A memo for this transaction.
@@ -20,7 +20,7 @@ public class Transaction {
     /**
      * The account in which the transaction was performed.
      */
-    private Account inAccount;
+    private final Account inAccount;
 
     /**
      * Create a new transaction without memo.
@@ -48,4 +48,33 @@ public class Transaction {
         this.memo = memo;
     }
 
+    /**
+     * Get the amount of the transaction.
+     * @return the amount
+     */
+    public double getAmount() {
+        return this.amount;
+    }
+
+    /**
+     * Get a string summarizing the transaction
+     * @return the summary string
+     */
+    public String getSummaryLine() {
+        return String.format("%s\t:\t$%s\t:\t%s\n", this.timestamp.toString(),
+                getAmountLine(), this.memo);
+    }
+
+    /**
+     * Get a string of amount. Negative amount add in rounded parentheses.
+     * @return string of amount
+     */
+    private String getAmountLine() {
+        StringBuilder builder = new StringBuilder();
+        builder.append(this.amount);
+        if (amount < 0) {
+            builder.insert(0, "(").append(")");
+        }
+        return builder.toString();
+    }
 }

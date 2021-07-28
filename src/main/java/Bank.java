@@ -6,11 +6,11 @@ public class Bank {
     private static final int USER_UUID_LENGTH    = 6;
     private static final int ACCOUNT_UUID_LENGTH = 10;
 
-    private String name;
+    private final String name;
 
-    private List<User> users;
+    private final List<User> users;
 
-    private List<Account> accounts;
+    private final List<Account> accounts;
 
     /**
      * Create a new Bank object with empty lists of users and accounts

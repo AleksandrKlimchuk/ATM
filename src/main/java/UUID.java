@@ -7,5 +7,5 @@ public interface UUID {
      * Getter for UUID.
      * @return  the UUID
      */
-    public String getUUID();
+    String getUUID();
 }

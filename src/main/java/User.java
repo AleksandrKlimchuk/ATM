@@ -11,17 +11,17 @@ public class User implements UUID {
     /**
      * The first name of user.
      * */
-    private String firstName;
+    private final String firstName;
 
     /**
      * The last name of user.
      * */
-    private String lastName;
+    private final String lastName;
 
     /**
      * The ID number of the user.
      * */
-    private String uuid;
+    private final String uuid;
 
     /**
      * The MD5 hash of the user's pin number.
@@ -31,7 +31,7 @@ public class User implements UUID {
     /**
      * The list accounts for this user.
      * */
-    private List<Account> accounts;
+    private final List<Account> accounts;
 
     /**
      * Create a new User.
@@ -85,7 +85,7 @@ public class User implements UUID {
     }
 
     /**
-     * Check whether a given pin matches the true User pin
+     * Check whether a given pin matches the true User pin.
      * @param aPin  the Pin to check
      * @return      whether the pin is valid or not
      */
@@ -100,5 +100,69 @@ public class User implements UUID {
             System.exit(1);
         }
         return false;
+    }
+
+    /**
+     * Return the user's first name.
+     * @return the first name
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * Print summaries for the accounts of this user.
+     */
+    public void printAccountsSummary() {
+
+        System.out.printf("\n\n%s's accounts summary\n", this.firstName);
+        for (int i = 0; i < this.accounts.size(); i++) {
+            System.out.printf("%d) %s\n", i + 1, this.accounts.get(i).getSummaryLine());
+        }
+        System.out.println();
+    }
+
+    /**
+     * Get the number of accounts of the user.
+     * @return the number of accounts
+     */
+    public int getNumAccounts() {
+        return this.accounts.size();
+    }
+
+    /**
+     * Print transaction history for a particular account.
+     * @param acctIndex the index of the account use
+     */
+    public void printAccountTransHistory(int acctIndex) {
+        this.accounts.get(acctIndex).printTransHistory();
+    }
+
+    /**
+     * Get the balance of a particular account.
+     * @param accountIndex  the index of the account to use
+     * @return              the balance of the account
+     */
+    public double getAccountBalance(int accountIndex) {
+        return this.accounts.get(accountIndex).getBalance();
+    }
+
+    /**
+     * Get the UUID of a particular account
+     * @param accountIndex      the index of the account to use
+     * @return                  the UUID of the account
+     */
+    public String getAccountUUID(int accountIndex) {
+        return this.accounts.get(accountIndex).getUUID();
+    }
+
+    /**
+     * Add the transaction to a particular account
+     * @param accountIndex      the index of the account
+     * @param amount            the amount of the transaction
+     * @param memo              the memo of the transaction
+     */
+    public void addAccountTransaction(int accountIndex, double amount, String memo) {
+        this.accounts.get(accountIndex).addTransaction(amount, memo);
     }
 }
