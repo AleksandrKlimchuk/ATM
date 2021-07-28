@@ -45,7 +45,7 @@ public class ATM {
      * @param sc            the Scanner object used for User input
      * @return              state for printing again
      */
-    public static boolean printUserMenu(User currentUser, Scanner sc) {
+    private static boolean printUserMenu(User currentUser, Scanner sc) {
 
         // Print a summary of user's accounts
         currentUser.printAccountsSummary();
@@ -221,7 +221,7 @@ public class ATM {
      * @param sc        the Scanner object to use for user input
      * @return          the authenticated User object
      */
-    public static User MainMenuPrompt(Bank theBank, Scanner sc) {
+    private static User MainMenuPrompt(Bank theBank, Scanner sc) {
 
         // Inits
         String userID;
